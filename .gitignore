@@ -8,4 +8,5 @@ temp/
 dist/
 data/
 .idea/
+coverage/
 package-lock.json
