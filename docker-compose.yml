@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mariadb:
+    image: "mariadb:10.4.8"
+    container_name: "typeorm-mariadb"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "test"
+      MYSQL_PASSWORD: "test"
+      MYSQL_DATABASE: "shoppingcart"
+    volumes:
+      - ./data/db:/var/lib/mysql
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-shoppingcart
+    env_file:
+      - .env
+    ports:
+      - '9002:9002'
+    depends_on:
+      - mariadb
+    volumes:
+      - ./src:/app/src
