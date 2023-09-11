@@ -78,7 +78,8 @@ npm run start:prod      //This will load the service from compiled js files
 ### Tests 🐞
 
 - Unit tests are written covering almost all the modules including auth guards and role guards. 
-To run the whole test suite of the project. Simply run the below command.
+To run the whole test suite of the project. Simply run the below command. 
+- You would need to install node and npm before running the tests. Install dependencies before running tests using `npm install`
 ```bash
 npm run test
 ```
