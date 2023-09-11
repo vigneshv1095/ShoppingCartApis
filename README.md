@@ -27,6 +27,11 @@ Adding both docker and non-docker way of running the service.
     [Docker guide](https://docs.docker.com/engine/install/#desktop)
 
 ---
+### Git clone
+- Use the below command to clone the project:
+```https://github.com/vigneshv1095/ShoppingCartApis.git```
+- Run the below commands inside the project folder. `ShoppingCartApis`
+---
 
 ### 🚀 Deployment
 #### Manual Deployment without using Docker
