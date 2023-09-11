@@ -105,7 +105,7 @@ curl --location 'localhost:9002/api/v1/auth/signup' \
     "password" : "sample1234"
 }'
 ```
-######Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -133,7 +133,7 @@ curl --location 'localhost:9002/api/v1/auth/signin' \
 }'
 ```
 
-######Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -157,7 +157,7 @@ curl --location 'localhost:9002/api/v1/user/suspend' \
     "suspend" : true
 }'
 ```
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -184,7 +184,7 @@ curl --location 'localhost:9002/api/v1/items/create' \
     "price" : 1000
 }'
 ```
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -210,7 +210,7 @@ curl --location --request PATCH 'localhost:9002/api/v1/items/update_stock' \
     "stock" : false
 }'
 ```
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -231,7 +231,7 @@ curl --location --request PATCH 'localhost:9002/api/v1/items/update_stock' \
 curl --location 'localhost:9002/api/v1/items' \
 --header 'Authorization: Bearer <AccessToken copied from signin>'
 ```
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -259,7 +259,7 @@ curl --location 'localhost:9002/api/v1/cart/add' \
 }'
 ```
 - productId can be copied from `List all items` API.
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -293,7 +293,7 @@ curl --location 'localhost:9002/api/v1/cart' \
 --header 'Authorization: Bearer <AccessToken copied from signin>'
 ```
 
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
@@ -333,7 +333,7 @@ curl --location --request DELETE 'localhost:9002/api/v1/cart/remove' \
     "productId" : "c5fe7b09-d84b-4bdb-9fc8-0a53a80d976c"
 }'
 ```
-###### Response
+`Response: `
 ```bash
 {
     "success": true,
