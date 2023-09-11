@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {HttpException, Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -28,6 +28,9 @@ export class UserService {
 
     public async toggleSuspend(username: string, suspend: boolean): Promise<User> {
         const user = await this.findOneByName(username);
+        if (!user) {
+            throw new HttpException('User not found', 400);
+        }
         user.suspended = suspend;
         await this.save(user);
         return user;
