@@ -1,10 +1,9 @@
-import {HttpException, Injectable} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Cart} from "./cart.entity";
-import {Repository} from "typeorm";
-import {User} from "../user/user.entity";
-import {ProductService} from "../product/product.service";
-
+import {HttpException, Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Cart} from './cart.entity';
+import {Repository} from 'typeorm';
+import {User} from '../user/user.entity';
+import {ProductService} from '../product/product.service';
 
 @Injectable()
 export class CartService {
@@ -16,11 +15,11 @@ export class CartService {
     }
 
     public async addToCart(productId: number, user: User): Promise<Cart> {
-        const cartItems = await this.cartRepository.find({ relations: ["item",'user'], where: {user: {id: user.id}}});
+        const cartItems = await this.cartRepository.find({ relations: ['item', 'user'], where: {user: {id: user.id}}});
         const product = await this.productService.findById(productId);
 
         if (!product || !product.inStock) {
-            throw new HttpException("Product not in stock or missing!", 400);
+            throw new HttpException('Product not in stock or missing!', 400);
         }
         const cart = cartItems.filter(
             (item) => item.item.id === productId
@@ -40,13 +39,13 @@ export class CartService {
         }
     }
 
-    async getItemsInCart(user: User): Promise<Cart[]> {
-        const userCart = await this.cartRepository.find({ relations: ["item",'user'], where: {user: {id: user.id}}});
+    public async getItemsInCart(user: User): Promise<Cart[]> {
+        const userCart = await this.cartRepository.find({ relations: ['item', 'user'], where: {user: {id: user.id}}});
         return userCart;
     }
 
-    async removeItemsInCart(productId: number, user: User): Promise<Cart[]> {
-        const cartItems = await this.cartRepository.find({ relations: ["item",'user'], where: {user: {id: user.id}}});
+    public async removeItemsInCart(productId: number, user: User): Promise<Cart[]> {
+        const cartItems = await this.cartRepository.find({ relations: ['item', 'user'], where: {user: {id: user.id}}});
         const cart = cartItems.filter(
             (item) => item.item.id === productId
         );

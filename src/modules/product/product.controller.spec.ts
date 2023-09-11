@@ -1,11 +1,10 @@
-import {ProductController} from "./product.controller";
-import {ProductService} from "./product.service";
-import {Test, TestingModule} from "@nestjs/testing";
-import {Product} from "./product.entity";
-import {CanActivate} from "@nestjs/common";
-import {AuthGuard} from "../auth/auth.guard";
-import {RolesGuard} from "../role/role.guard";
-
+import {ProductController} from './product.controller';
+import {ProductService} from './product.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {Product} from './product.entity';
+import {CanActivate} from '@nestjs/common';
+import {AuthGuard} from '../auth/auth.guard';
+import {RolesGuard} from '../role/role.guard';
 
 const product1 = new Product();
 product1.id = 123;
@@ -23,7 +22,7 @@ const products = [product1, product2];
 
 describe('ProductController', () => {
     let controller: ProductController;
-    let service: ProductService
+    let service: ProductService;
 
     beforeEach(async () => {
         // Mocking the guards since we've unit tested the guards individually.
@@ -46,9 +45,9 @@ describe('ProductController', () => {
             ]
         }).overrideGuard(AuthGuard).useValue(mockGuard)
             .overrideGuard(RolesGuard).useValue(mockRoleGuard)
-            .compile()
-        controller = module.get<ProductController>(ProductController)
-        service = module.get<ProductService>(ProductService)
+            .compile();
+        controller = module.get<ProductController>(ProductController);
+        service = module.get<ProductService>(ProductService);
     });
 
     it('should be defined', () => {
@@ -60,9 +59,9 @@ describe('ProductController', () => {
             expect(controller.getAllItems()).resolves.toEqual({
                 data: products,
                 success: true
-            })
-        })
-    })
+            });
+        });
+    });
 
     describe('create product', () => {
         it('should create product', () => {
@@ -70,8 +69,8 @@ describe('ProductController', () => {
                 success: true,
                 data: product1
             });
-        })
-    })
+        });
+    });
 
     describe('update stock', () => {
         it('update item stock', () => {
@@ -83,7 +82,7 @@ describe('ProductController', () => {
                     name: 'Product 1',
                     inStock: false
                 }
-            })
+            });
         });
     });
 });

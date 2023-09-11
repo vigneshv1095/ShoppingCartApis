@@ -6,33 +6,32 @@ import {
     OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
-} from "typeorm";
-import {Cart} from "../cart/cart.entity";
-
+} from 'typeorm';
+import {Cart} from '../cart/cart.entity';
 
 @Entity()
 export class Product {
 
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    public id: number;
 
     @Column()
-    name: string;
+    public name: string;
 
     @Column()
-    price: number;
+    public price: number;
 
     @Column()
-    inStock: boolean;
+    public inStock: boolean;
 
     @CreateDateColumn()
-    createdAt: String;
+    public createdAt: string;
 
     @UpdateDateColumn()
-    updatedAt: String;
+    public updatedAt: string;
 
     @OneToMany(type => Cart, cart => cart.id)
     @JoinColumn()
-    cart: Cart[]
+    public cart: Cart[];
 
 }

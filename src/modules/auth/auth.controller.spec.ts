@@ -1,9 +1,9 @@
-import {AuthController} from "./auth.controller";
-import {AuthService} from "./auth.service";
-import {Test, TestingModule} from "@nestjs/testing";
-import {User} from "../user/user.entity";
-import {Role} from "../role/role.enum";
-import {ConfigService} from "@nestjs/config";
+import {AuthController} from './auth.controller';
+import {AuthService} from './auth.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {User} from '../user/user.entity';
+import {Role} from '../role/role.enum';
+import {ConfigService} from '@nestjs/config';
 
 const user1 = new User();
 user1.username = 'test1';
@@ -13,12 +13,12 @@ user1.suspended = false;
 
 const token = {
     accessToken: 'signedToken'
-}
+};
 
 describe('AuthController', () => {
     let controller: AuthController;
-    let service: AuthService
-    let configService: ConfigService
+    let service: AuthService;
+    let configService: ConfigService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -34,7 +34,7 @@ describe('AuthController', () => {
                 {
                     provide: ConfigService,
                     useValue: {
-                        get: jest.fn().mockImplementation((key: string) => { return 'ADMIN_KEY'})
+                        get: jest.fn().mockImplementation((key: string) => { return 'ADMIN_KEY'; })
                     }
                 }
             ]
@@ -42,7 +42,7 @@ describe('AuthController', () => {
         controller = module.get<AuthController>(AuthController);
         service = module.get<AuthService>(AuthService);
         configService = module.get<ConfigService>(ConfigService);
-    })
+    });
 
     it('should be defined', () => {
         expect(controller).toBeDefined();
@@ -78,4 +78,4 @@ describe('AuthController', () => {
             });
         });
     });
-})
+});

@@ -7,22 +7,22 @@ import { User } from './user.entity';
 export class UserService {
     constructor(
         @InjectRepository(User)
-        private usersRepository: Repository<User>,
+        private usersRepository: Repository<User>
     ) {}
 
-    async findOneByName(name: string): Promise<User> {
+    public async findOneByName(name: string): Promise<User> {
         return this.usersRepository.findOne({username: name});
     }
 
-    async findOneWithPassword(name: string): Promise<User> {
+    public async findOneWithPassword(name: string): Promise<User> {
         return this.usersRepository.createQueryBuilder().select('*').where({username: name}).getRawOne();
     }
 
-    async save(user: User): Promise<void> {
+    public async save(user: User): Promise<void> {
         await this.usersRepository.save(user);
     }
 
-    async remove(id: number): Promise<void> {
+    public async remove(id: number): Promise<void> {
         await this.usersRepository.delete(id);
     }
 

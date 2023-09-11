@@ -1,10 +1,9 @@
-import {ProductService} from "./product.service";
-import {Repository} from "typeorm";
-import {Product} from "./product.entity";
-import {Test, TestingModule} from "@nestjs/testing";
-import {getRepositoryToken} from "@nestjs/typeorm";
-import {HttpException} from "@nestjs/common";
-
+import {ProductService} from './product.service';
+import {Repository} from 'typeorm';
+import {Product} from './product.entity';
+import {Test, TestingModule} from '@nestjs/testing';
+import {getRepositoryToken} from '@nestjs/typeorm';
+import {HttpException} from '@nestjs/common';
 
 const product1 = new Product();
 product1.id = 123;
@@ -34,7 +33,7 @@ describe('ProductService', () => {
                         find: jest.fn().mockResolvedValue(products),
                         findOne: jest.fn().mockImplementation((id: number) => {
                             if (id === 123) {
-                                return product1
+                                return product1;
                             }
                         }),
                         save: jest.fn().mockImplementation( (product: any) => Promise.resolve(product)),
@@ -43,8 +42,8 @@ describe('ProductService', () => {
                 }
             ]
         }).compile();
-        service = module.get<ProductService>(ProductService)
-        repo = module.get<Repository<Product>>(getRepositoryToken(Product))
+        service = module.get<ProductService>(ProductService);
+        repo = module.get<Repository<Product>>(getRepositoryToken(Product));
     });
 
     it('should be defined', () => {
@@ -54,18 +53,18 @@ describe('ProductService', () => {
     describe('getAll', () => {
         it ('should return all products', () => {
             expect(service.getAll()).resolves.toEqual(products);
-        })
-    })
+        });
+    });
 
     describe('findById', () => {
         it ('should return a particular product', () => {
             expect(service.findById(123)).resolves.toEqual(product1);
-        })
+        });
 
         it ('should throw error for non existing product', () => {
             expect(service.findById(145)).resolves.toBeUndefined();
-        })
-    })
+        });
+    });
 
     describe('updateItemStock', () => {
         it ('updates the item stock', () => {
@@ -79,9 +78,9 @@ describe('ProductService', () => {
 
         it ('update non existing product', () => {
             expect(service.updateItemStock(145, false)).rejects.toEqual(
-                new HttpException("Please create the product first.", 400)
+                new HttpException('Please create the product first.', 400)
             );
         });
-    })
+    });
 
-})
+});

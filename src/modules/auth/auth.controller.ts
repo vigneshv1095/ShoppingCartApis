@@ -1,9 +1,8 @@
-import {Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards} from "@nestjs/common";
-import {AuthService} from "./auth.service";
-import {AuthRequest, DefaultResponse} from "./auth.types";
-import {Role} from "../role/role.enum";
-import {ConfigService} from "@nestjs/config";
-
+import {Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards} from '@nestjs/common';
+import {AuthService} from './auth.service';
+import {AuthRequest, DefaultResponse} from './auth.types';
+import {Role} from '../role/role.enum';
+import {ConfigService} from '@nestjs/config';
 
 @Controller('auth')
 export class AuthController {
@@ -26,7 +25,7 @@ export class AuthController {
         return {
             success: true,
             data: await this.authService.signUp(body.username, body.password, role)
-        }
+        };
     }
 
     @HttpCode(HttpStatus.OK)
@@ -35,7 +34,7 @@ export class AuthController {
         return {
             success: true,
             data: await this.authService.signIn(body.username, body.password)
-        }
+        };
     }
 
 }

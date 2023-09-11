@@ -1,13 +1,12 @@
-import {Body, Controller, Get, Patch, Post, UseGuards} from "@nestjs/common";
-import {ProductService} from "./product.service";
-import {CreateItemRequest, DefaultResponse, UpdateStockRequest} from "./product.types";
-import {AuthGuard} from "../auth/auth.guard";
-import {RolesGuard} from "../role/role.guard";
-import {Roles} from "../role/role.decorator";
-import {Role} from "../role/role.enum";
-import {Product} from "./product.entity";
-import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
-
+import {Body, Controller, Get, Patch, Post, UseGuards} from '@nestjs/common';
+import {ProductService} from './product.service';
+import {CreateItemRequest, DefaultResponse, UpdateStockRequest} from './product.types';
+import {AuthGuard} from '../auth/auth.guard';
+import {RolesGuard} from '../role/role.guard';
+import {Roles} from '../role/role.decorator';
+import {Role} from '../role/role.enum';
+import {Product} from './product.entity';
+import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 
 @Controller('items')
 @UseGuards(AuthGuard, RolesGuard)
@@ -25,7 +24,7 @@ export class ProductController {
         return {
             success: true,
             data: await this.productService.getAll()
-        }
+        };
     }
 
     @Patch('update_stock')
@@ -35,7 +34,7 @@ export class ProductController {
         return {
             success: true,
             data: await this.productService.updateItemStock(body.id, body.stock)
-        }
+        };
     }
 
     @Post('create')
@@ -49,8 +48,7 @@ export class ProductController {
         return {
             success: true,
             data: await this.productService.create(product)
-        }
+        };
     }
-
 
 }

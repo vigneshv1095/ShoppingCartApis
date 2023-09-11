@@ -1,10 +1,10 @@
-import {UserController} from "./user.controller";
-import {UserService} from "./user.service";
-import {Test, TestingModule} from "@nestjs/testing";
-import {User} from "./user.entity";
-import {Role} from "../role/role.enum";
-import {CanActivate} from "@nestjs/common";
-import {AuthGuard} from "../auth/auth.guard";
+import {UserController} from './user.controller';
+import {UserService} from './user.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {User} from './user.entity';
+import {Role} from '../role/role.enum';
+import {CanActivate} from '@nestjs/common';
+import {AuthGuard} from '../auth/auth.guard';
 
 const user2 = new User();
 user2.username = 'test2';
@@ -27,10 +27,10 @@ describe('UserController', () => {
                         Promise.resolve(user2))
                 }
             }]
-        }).overrideGuard(AuthGuard).useValue(mockGuard).compile()
+        }).overrideGuard(AuthGuard).useValue(mockGuard).compile();
         controller = module.get<UserController>(UserController);
         service = module.get<UserService>(UserService);
-    })
+    });
 
     it('should be defined', () => {
         expect(controller).toBeDefined();
@@ -41,9 +41,9 @@ describe('UserController', () => {
             await expect(controller.suspendUser({username: 'test2', suspend: false})).resolves.toEqual({
                 success: true,
                 data: user2
-            })
+            });
             expect(service.toggleSuspend).toBeCalledTimes(1);
             expect(service.toggleSuspend).toBeCalledWith('test2', false);
-        })
-    })
-})
+        });
+    });
+});

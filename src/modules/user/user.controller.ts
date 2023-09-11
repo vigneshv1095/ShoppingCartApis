@@ -1,12 +1,11 @@
-import {Body, Controller, HttpCode, HttpStatus, Post, UseGuards} from "@nestjs/common";
-import {AuthGuard} from "../auth/auth.guard";
-import {RolesGuard} from "../role/role.guard";
-import {Roles} from "../role/role.decorator";
-import {Role} from "../role/role.enum";
-import {UserService} from "./user.service";
-import {DefaultResponse, SuspendRequest} from "./user.types";
-import {ApiTags} from "@nestjs/swagger";
-
+import {Body, Controller, HttpCode, HttpStatus, Post, UseGuards} from '@nestjs/common';
+import {AuthGuard} from '../auth/auth.guard';
+import {RolesGuard} from '../role/role.guard';
+import {Roles} from '../role/role.decorator';
+import {Role} from '../role/role.enum';
+import {UserService} from './user.service';
+import {DefaultResponse, SuspendRequest} from './user.types';
+import {ApiTags} from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
@@ -25,7 +24,7 @@ export class UserController {
         return {
             success: true,
             data: await this.userService.toggleSuspend(body.username, body.suspend)
-        }
+        };
     }
 
 }

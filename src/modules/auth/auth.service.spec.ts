@@ -1,11 +1,11 @@
-import {AuthService} from "./auth.service";
-import {UserService} from "../user/user.service";
-import {JwtService} from "@nestjs/jwt";
-import {Test, TestingModule} from "@nestjs/testing";
-import {User} from "../user/user.entity";
-import {Role} from "../role/role.enum";
+import {AuthService} from './auth.service';
+import {UserService} from '../user/user.service';
+import {JwtService} from '@nestjs/jwt';
+import {Test, TestingModule} from '@nestjs/testing';
+import {User} from '../user/user.entity';
+import {Role} from '../role/role.enum';
 import * as bcrypt from 'bcrypt';
-import {HttpException} from "@nestjs/common";
+import {HttpException} from '@nestjs/common';
 
 const user1 = new User();
 user1.username = 'test1';
@@ -26,10 +26,10 @@ describe('AuthService', () => {
                     provide: UserService,
                     useValue: {
                         findOneByName: jest.fn().mockImplementation((username: string) => {
-                            if (username === 'test1') return Promise.resolve(user1)
+                            if (username === 'test1') { return Promise.resolve(user1); }
                         }),
                         findOneWithPassword: jest.fn().mockImplementation((username: string) => {
-                            if (username === 'test1') return Promise.resolve(user1)
+                            if (username === 'test1') { return Promise.resolve(user1); }
                         }),
                         save: jest.fn()
                     }
@@ -64,8 +64,8 @@ describe('AuthService', () => {
 
         it('it should not sign up', () => {
             expect(service.signUp('test1', 'test1234', Role.User)).rejects.toEqual(
-                new HttpException("User already exists. Please use sign in", 400)
-            )
+                new HttpException('User already exists. Please use sign in', 400)
+            );
         });
     });
 
@@ -94,10 +94,10 @@ describe('AuthService', () => {
         it('it should not allow suspended user', () => {
             user1.suspended = true;
             expect(service.signIn('test1', 'test1234')).rejects.toEqual(
-                new HttpException("User is suspended. Please contact admin.", 400)
+                new HttpException('User is suspended. Please contact admin.', 400)
             );
             expect(userService.findOneWithPassword).toBeCalledTimes(1);
-        })
+        });
     });
 
-})
+});

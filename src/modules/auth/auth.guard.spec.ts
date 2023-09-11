@@ -1,9 +1,8 @@
-import {AuthGuard} from "./auth.guard";
-import {ConfigService} from "@nestjs/config";
-import {JwtService} from "@nestjs/jwt";
-import {Test} from "@nestjs/testing";
-import {UnauthorizedException} from "@nestjs/common";
-
+import {AuthGuard} from './auth.guard';
+import {ConfigService} from '@nestjs/config';
+import {JwtService} from '@nestjs/jwt';
+import {Test} from '@nestjs/testing';
+import {UnauthorizedException} from '@nestjs/common';
 
 describe('AuthGuard', () => {
     let guard: AuthGuard;
@@ -19,7 +18,7 @@ describe('AuthGuard', () => {
                 {
                     provide: ConfigService,
                     useValue: {
-                        get: jest.fn().mockImplementation((key: string) => { return 'secret'} )
+                        get: jest.fn().mockImplementation((key: string) => { return 'secret'; } )
                     }
                 },
                 {
@@ -34,7 +33,7 @@ describe('AuthGuard', () => {
                     }
                 }
             ]
-        }).compile()
+        }).compile();
 
         guard = module.get<AuthGuard>(AuthGuard);
         config = module.get<ConfigService>(ConfigService);
@@ -96,4 +95,4 @@ describe('AuthGuard', () => {
         });
     });
 
-})
+});

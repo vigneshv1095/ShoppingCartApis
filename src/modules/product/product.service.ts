@@ -1,8 +1,7 @@
-import {HttpException, Injectable} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Product} from "./product.entity";
-import {Repository} from "typeorm";
-
+import {HttpException, Injectable} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Product} from './product.entity';
+import {Repository} from 'typeorm';
 
 @Injectable()
 export class ProductService {
@@ -31,7 +30,7 @@ export class ProductService {
     public async updateItemStock(id: number, stock: boolean): Promise<Product> {
         const product = await this.findById(id);
         if (!product) {
-            throw new HttpException("Please create the product first.", 400);
+            throw new HttpException('Please create the product first.', 400);
         }
         product.inStock = stock;
         await this.update(product);

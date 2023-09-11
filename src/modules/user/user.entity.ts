@@ -7,35 +7,35 @@ import {
     JoinColumn,
     OneToOne
 } from 'typeorm';
-import {Role} from "../role/role.enum";
-import {Cart} from "../cart/cart.entity";
+import {Role} from '../role/role.enum';
+import {Cart} from '../cart/cart.entity';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    id: number;
+    public id: number;
 
     @Column({nullable: false, unique: true})
-    username: string;
+    public username: string;
 
-    @Column({nullable: false, select:false})
-    password: string;
+    @Column({nullable: false, select: false})
+    public password: string;
 
     @Column({default: false})
-    suspended: boolean;
+    public suspended: boolean;
 
     // Since the scope of the problem is limited to user and admin.
     // We're sticking with enum rather than creating a new table.
     @Column()
-    role: Role
+    public role: Role;
 
     @CreateDateColumn()
-    createdAt: string;
+    public createdAt: string;
 
     @UpdateDateColumn()
-    updatedAt: string;
+    public updatedAt: string;
 
     @OneToOne(type => Cart, cart => cart.id)
     @JoinColumn()
-    cart: Cart;
+    public cart: Cart;
 }

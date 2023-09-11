@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import {ConfigService} from "@nestjs/config";
+import {ConfigService} from '@nestjs/config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
         private configService: ConfigService
     ) {}
 
-    async canActivate(context: ExecutionContext): Promise<boolean> {
+    public async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
         if (!token) {
@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
             );
             // We're assigning the payload to the request object here
             // so that we can access it in our route handlers and also checking for needed role.
-            request['user'] = payload;
+            request.user = payload;
         } catch {
             throw new UnauthorizedException();
         }

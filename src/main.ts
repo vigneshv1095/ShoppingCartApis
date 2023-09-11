@@ -60,12 +60,12 @@ export const SWAGGER_API_CURRENT_VERSION = '1.0';
                 defaultSrc: [`'self'`],
                 styleSrc: [`'self'`, `'unsafe-inline'`],
                 imgSrc: [`'self'`, 'data:', 'validator.swagger.io'],
-                scriptSrc: [`'self'`, `https: 'unsafe-inline'`],
-            },
-        },
+                scriptSrc: [`'self'`, `https: 'unsafe-inline'`]
+            }
+        }
     });
     app.register(fastifyHelmet, {
-        contentSecurityPolicy: false,
+        contentSecurityPolicy: false
     });
     app.register(rTracer.fastifyPlugin);
     app.useGlobalPipes(new ValidationPipe());

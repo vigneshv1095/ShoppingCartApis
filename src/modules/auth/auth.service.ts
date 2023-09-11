@@ -1,9 +1,9 @@
 import {HttpException, Injectable} from '@nestjs/common';
-import {UserService} from "../user/user.service";
-import {User} from "../user/user.entity";
+import {UserService} from '../user/user.service';
+import {User} from '../user/user.entity';
 import * as bcrypt from 'bcrypt';
-import {Role} from "../role/role.enum";
-import {JwtService} from "@nestjs/jwt";
+import {Role} from '../role/role.enum';
+import {JwtService} from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     public async signUp(username: string, password: string, role: Role): Promise<User> {
         const user = await this.userService.findOneByName(username);
         if (user) {
-            throw new HttpException("User already exists. Please use sign in", 400);
+            throw new HttpException('User already exists. Please use sign in', 400);
         }
         const saltOrRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltOrRounds);
@@ -37,11 +37,11 @@ export class AuthService {
             throw new HttpException("Username and password doesn't match. Please try again", 400);
         }
         if (user.suspended) {
-            throw new HttpException("User is suspended. Please contact admin.", 400);
+            throw new HttpException('User is suspended. Please contact admin.', 400);
         }
         const payload = {id: user.id, username: user.username, role: user.role};
         return {
             accessToken: await this.jwtService.signAsync(payload)
-        }
+        };
     }
 }
